@@ -15,7 +15,6 @@
 
 Database Table Name|File
 -----|-------  
-ACT_COVID_HPDS|ACT_COVID_HPDS.dsv
 ACT_ICD10CM_DX_2018AA_HPDS|ACT_ICD10CM_DX_2018AA_HPDS.dsv
 GIC_BIOSAMPLES_HPDS|GIC_BIOSAMPLES_HPDS.dsv
 NCATS_LABS_HPDS|NCATS_LABS_HPDS.dsv
@@ -79,13 +78,16 @@ Answer: [Upload data guide lines ](https://github.com/hms-dbmi/i2b2ACTtoHPDS/tre
 <b>Question: Are there any issues extracting large dataset?</b><br>
 Answer: If the extraction job runs out of memory, increase heapsize parameter in the Jenkins jobs.
 
+<b>Question: How should tval_char and nval_num be populated</b><br>
+Answer: 
+
 <b>QA test searches to vaildate all the nodes got loaded correctly in GIC</b><br>
 
 GIC	Node|Filter type	|Search Criteria 
 ------------|---------------|----------------
-ACT Procedures CPT	|All are categorical values	|search "Acetaminophen level" - retired CPT code - select ACT_Procedures_CPT tab
-ACT Diagnosis ICD-10	|All are categorical values	|search  "J00 Acute nasopharyngitis [common cold]" - select ACT_Diagnosis_ICD_10 tab
-ACT Medications	|Both numeric and categorical values	|search for "Histrelin" in ACT_Medications tab, select "H [Preparations], Restrict By Value Histrelin" - shows with categorical filter. Search for  "Aspirin" in ACT_Medications shows up as a numeric filter
+ACT Procedures CPT	|No Values|search "Acetaminophen level" - retired CPT code - select ACT_Procedures_CPT tab
+ACT Diagnosis ICD-10	|No values	|search  "J00 Acute nasopharyngitis [common cold]" - select ACT_Diagnosis_ICD_10 tab
+ACT Medications	|No values	|search for "Histrelin" in ACT_Medications tab, select "H [Preparations], Restrict By Value Histrelin" - shows with categorical filter. Search for  "Aspirin" in ACT_Medications shows up as a numeric filter
 ACT Lab Test Results	|Both numeric and categorical values	|search for "GGT" in ACT_Lab_Test_Results -select option"GGT: GGT in Serum or Plasma" -it shows with categorical filter. Search for  "Albumin" in ACT_Lab_Test_Results shows up as a numeric filter
 NucleicAcid	|All are categorical values|search "NucleicAcid" select bio_specimens tab
 Plasma	|Numeric filter 	|search "plasma" select bio_specimens tab
@@ -93,6 +95,7 @@ Blood	|Numeric filter 	|search "Blood" select bio_specimens tab
 CSF	|Numeric filter 	|search "CSF" select bio_specimens tab
 HumanTissue	|Numeric filter 	|search "Tissue" select bio_specimens tab
 Gnome	|All are categorical values	|search "True"
+Sex	|All are categorical values	|search "sex" and select act_demographics tab
 Hispanic	|All are categorical values	|search "Hispanic" and select act_demographics tab
 Race	|All are categorical values	|search "race" and select act_demographics tab.
 Demographic Age	|Numeric filter 	|search "Age" and select act_demographics tab
